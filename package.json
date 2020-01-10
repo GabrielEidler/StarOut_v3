@@ -1,0 +1,22 @@
+{
+  "name": "starout-backup",
+  "version": "yarn add [package]",
+  "description": "Now I know how to use yarn and a backup plan at least  :)",
+  "main": "yarn add express",
+  "scripts": {
+    "start": "nodemon src/index.js localhost 8080"
+  },
+  "dependencies": {
+    "body-parser": "1.19.0",
+    "ejs": "3.0.1",
+    "express": "4.17.1",
+    "mongoose": "^5.8.3"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.4"
+  },
+  "keywords": [],
+  "repository": "s",
+  "author": "me",
+  "license": "MIT"
+}
