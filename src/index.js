@@ -5,32 +5,26 @@ const express = require("express"),
   app = express(),
   bodyParser = require("body-parser"),
   // Using Node.js `require()`
-  mongoose = require("mongoose");
+  mongoose = require("mongoose"),
+  Campground = require("../models/campground"),
+  seedDb = require("../seeds.js");
 
+seedDb();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static("views"));
 
-// ===========================================================
-// DATABASE STUFF
-// ===========================================================
-
-//SCHEMA SET UP
-var campgroundSchema = new mongoose.Schema({
-  name: String,
-  image: String,
-  description: String
-});
-
-var Campground = mongoose.model("Campground", campgroundSchema);
-
 mongoose.connect(
-  "mongodb+srv://gabrieleidler:theceltichero159357@cluster0-nh3lc.mongodb.net/test?retryWrites=true&w=majority",
+  "mongodb+srv://gabrieleidler:theceltichero159357@cluster0-nh3lc.mongodb.net/starout?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true
   }
 );
+
+// ===========================================================
+// DATABASE STUFF
+// ===========================================================
 
 // ===========================================================
 // ROUTES
@@ -79,14 +73,16 @@ app.get("/campgrounds/new", function(req, res) {
 app.get("/campgrounds/:id", (req, res) => {
   //find the caampground provided ID
   var id = req.params.id;
-  Campground.findById(id, (err, foundCampground) => {
-    if (err) {
-      console.log(err);
-    } else {
-      //render show template with that campground
-      res.render("show", { campground: foundCampground });
-    }
-  });
+  Campground.findById(id)
+    .populate("comments")
+    .exec((err, foundCampground) => {
+      if (err) {
+        console.log(err);
+      } else {
+        //render show template with that campground
+        res.render("show", { campground: foundCampground });
+      }
+    });
 });
 
 app.listen(8080, function() {

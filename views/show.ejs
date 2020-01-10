@@ -5,4 +5,11 @@
 <img src="<%= campground.image %>">
 <h3><%= campground.description%></h3>
 
+
+<% campground.comments.forEach((comment) =>{ %>
+<p> 
+  <Strong><%= comment.author %></Strong> - <%= comment.text %>
+</p>
+  <% }) %>
+
 <%- include("partials/footer") %>

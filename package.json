@@ -1,7 +1,7 @@
 {
-  "name": "starout-backup",
+  "name": "starout",
   "version": "yarn add [package]",
-  "description": "Now I know how to use yarn and a backup plan at least  :)",
+  "description": "",
   "main": "yarn add express",
   "scripts": {
     "start": "nodemon src/index.js localhost 8080"
