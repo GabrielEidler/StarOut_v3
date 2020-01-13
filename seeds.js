@@ -7,7 +7,8 @@ var data = [
     name: "Camp Ice Owl",
     image:
       "https://images.unsplash.com/photo-1455496231601-e6195da1f841?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
-    description: "Silent branches dangled from many a tree."
+    description:
+      "Silent branches dangled from many a tree. In Hinia, magic comes from a reincarnation cycle. All the power and knowledge one gains in life is passed onto new life through reincarnation, those with the most powerful lives in older generations wield the most power today. There is some balance as a result of great education systems, but there will always be fortunate ones who inherited secrets they prefer to keep to themselves.There are those who seek to break this cycle of inheritance to protect the world against the spread of misinformation, but some claim theyre doing it to prevent their secrets from falling into the wrong hands."
   },
   {
     name: "Camp Nighttide",

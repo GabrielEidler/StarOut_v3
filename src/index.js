@@ -8,12 +8,13 @@ const express = require("express"),
   mongoose = require("mongoose"),
   Campground = require("../models/campground"),
   Comment = require("../models/comment"),
-  seedDb = require("../seeds.js");
+  seedDb = require("../seeds.js"),
+  path = require("path");
 
 //seedDb();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
-app.use(express.static("views"));
+app.use(express.static(path.dirname(__dirname) + "/public"));
 
 mongoose.connect(
   "mongodb+srv://gabrieleidler:theceltichero159357@cluster0-nh3lc.mongodb.net/starout?retryWrites=true&w=majority",
