@@ -2,7 +2,7 @@ const mongoose = require("mongoose"),
   Campground = require("./models/campground"),
   Comment = require("./models/comment");
 
-var data = [
+/* var data = [
   {
     name: "Camp Ice Owl",
     image:
@@ -31,7 +31,7 @@ var data = [
     description: "Tremendous, gloomy, and ancient."
   }
 ];
-
+ */
 function seedDB() {
   //Remove all campgrounds
   Campground.remove({}, err => {
@@ -39,7 +39,7 @@ function seedDB() {
       console.log(err);
     }
     console.log("removed campgrounds!");
-    Comment.remove({}, err => {
+    /* Comment.remove({}, err => {
       if (err) {
         console.log(err);
       }
@@ -70,7 +70,7 @@ function seedDB() {
           }
         });
       });
-    });
+    });*/
   });
   //add a few comments
 }
