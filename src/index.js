@@ -8,6 +8,7 @@ const express = require("express"),
   mongoose = require("mongoose"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
+  methodOverride = require("method-override"),
   Campground = require("../models/campground"),
   Comment = require("../models/comment"),
   User = require("../models/user.js"),
@@ -22,6 +23,7 @@ var commentRoutes = require("../routes/comments"),
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(path.dirname(__dirname) + "/public"));
+app.use(methodOverride("_method"));
 
 // ===== PASSPORT CONFIGURATION ======
 app.use(
@@ -57,7 +59,8 @@ mongoose.connect(
   "mongodb+srv://gabrieleidler:theceltichero159357@cluster0-nh3lc.mongodb.net/starout?retryWrites=true&w=majority",
   {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
   }
 );
 
