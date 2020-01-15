@@ -9,15 +9,23 @@ var middlewareObj = {
         if (err) {
           res.redirect("back");
         } else {
+          // Added this block, to check if foundCampground exists, and if it doesn't to throw an error via connect-flash and send us back to the homepage
+          if (!foundCampground) {
+            req.flash("error", "Item not found.");
+            return res.redirect("back");
+          }
+
           //does user own campground?
           if (foundCampground.author.id.equals(req.user._id)) {
             next();
           } else {
+            req.flash("error", "you don't have permission to do that");
             res.redirect("back");
           }
         }
       });
     } else {
+      req.flash("error", "you need to be logged  in to do that");
       res.redirect("back");
     }
   },
@@ -33,11 +41,13 @@ var middlewareObj = {
           if (foundComment.author.id.equals(req.user._id)) {
             next();
           } else {
+            req.flash("error", "you don't have permission to do that");
             res.redirect("back");
           }
         }
       });
     } else {
+      req.flash("error", "you need to be logged  in to do that");
       res.redirect("back");
     }
   },
@@ -46,6 +56,7 @@ var middlewareObj = {
     if (req.isAuthenticated()) {
       return next();
     }
+    req.flash("error", "Please Login First!");
     res.redirect("/login");
   }
 };

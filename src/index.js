@@ -6,6 +6,7 @@ const express = require("express"),
   bodyParser = require("body-parser"),
   // Using Node.js `require()`
   mongoose = require("mongoose"),
+  flash = require("connect-flash"),
   passport = require("passport"),
   LocalStrategy = require("passport-local"),
   methodOverride = require("method-override"),
@@ -24,6 +25,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 app.use(express.static(path.dirname(__dirname) + "/public"));
 app.use(methodOverride("_method"));
+app.use(flash());
 
 // ===== PASSPORT CONFIGURATION ======
 app.use(
@@ -43,6 +45,9 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
   res.locals.currentUser = req.user;
+  res.locals.error = req.flash("error");
+  res.locals.success = req.flash("success");
+
   next();
 });
 

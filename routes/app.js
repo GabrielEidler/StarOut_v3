@@ -16,10 +16,11 @@ router.post("/register", (req, res) => {
   var newUser = new User({ username: req.body.username });
   User.register(newUser, req.body.password, (err, user) => {
     if (err) {
-      console.log(err);
+      req.flash("error", err.message);
       return res.render("register");
     }
     passport.authenticate("local")(req, res, () => {
+      req.flash("success", "welcome to OutStar " + user.username);
       res.redirect("/campgrounds");
     });
   });
@@ -43,15 +44,8 @@ router.post(
 //logout Route
 router.get("/logout", (req, res) => {
   req.logout();
+  req.flash("success", "LOGGED OUT");
   res.redirect("/campgrounds");
 });
-
-//middleware
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/login");
-}
 
 module.exports = router;
