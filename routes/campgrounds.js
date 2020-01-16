@@ -23,6 +23,7 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
   var name = req.body.name;
   var image = req.body.image;
   var description = req.body.description;
+  var price = req.body.price;
   var author = {
     id: req.user._id,
     username: req.user.username
@@ -31,7 +32,8 @@ router.post("/", middleware.isLoggedIn, function(req, res) {
     name: name,
     image: image,
     description: description,
-    author: author
+    author: author,
+    price: price
   };
   console.log(author.username);
 
@@ -101,7 +103,5 @@ router.delete("/:id", middleware.checkCampgroundOwnership, (req, res) => {
     }
   });
 });
-
-
 
 module.exports = router;
