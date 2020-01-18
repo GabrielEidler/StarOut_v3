@@ -61,13 +61,13 @@ app.use("/campgrounds", campgroundRoutes);
 // ===========================================================
 
 mongoose.connect(
-  "mongodb+srv://gabrieleidler:theceltichero159357@cluster0-nh3lc.mongodb.net/starout?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-  }
-);
+    process.env.DATABASEURL,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
+    }
+  );
 
 // ===========================================================
 // ROUTES
