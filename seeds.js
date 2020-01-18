@@ -76,3 +76,4 @@ function seedDB() {
 }
 
 module.exports = seedDB;
+//to be updated
